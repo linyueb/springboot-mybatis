@@ -4,13 +4,20 @@
 
     <resultMap id="BaseResultMap" type="com.lyue.entity.User">
         <result column="id" jdbcType="INTEGER" property="id" />
-        <result column="userName" jdbcType="VARCHAR" property="userName" />
-        <result column="passWord" jdbcType="VARCHAR" property="passWord" />
-        <result column="realName" jdbcType="VARCHAR" property="realName" />
+        <result column="username" jdbcType="VARCHAR" property="userName" />
+        <result column="phone" jdbcType="VARCHAR" property="phone" />
     </resultMap>
-
+    <sql id="Base_Column_List" >
+        id, userName,phone,status
+    </sql>
     <select id="Sel" resultType="com.lyue.entity.User">
-        select * from user where id = #{id}
+        select <include refid="Base_Column_List" /> from user where id = #{id}
     </select>
+    <select id="All" resultMap="BaseResultMap"  >
+        SELECT
+        <include refid="Base_Column_List" />
+        FROM user
+    </select>
+
 
 </mapper>
